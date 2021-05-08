@@ -44,7 +44,7 @@
 
 ---
 
-### Regras de negócio
+### Business rules
 
 - [x] Should be not able to register an account with an existing CPF
 - [x] Should be not able to get a statment from a non-existent account
