@@ -1,11 +1,26 @@
 import { Request, Response } from "express";
 import { getCustomRepository } from "typeorm";
+import * as yup from 'yup';
+
+import { AppError } from "../errors/AppError";
+
 import { StatmentRepository } from "../repositories/StatmentRepository";
 
 class StatmentController {
   async create(request: Request, response: Response) {
     const { description, amount, type } = request.body;
     const { customer } = request;
+    const schema = yup.object().shape({
+      description: yup.string().required(),
+      amount: yup.number().required(),
+      type: yup.string().required()
+    });
+
+    try {
+      await schema.validate(request.body, { abortEarly: false });
+    } catch (err) {
+      throw new AppError(err);
+    }
 
     const statmentRepository = getCustomRepository(StatmentRepository);
 

@@ -1,12 +1,26 @@
 import { Request, Response } from "express";
 import { getCustomRepository } from "typeorm";
+import * as yup from 'yup';
+
 import { AppError } from "../errors/AppError";
+
 import { CustomerRepository } from "../repositories/CustomerRepository";
 import BalanceService from "../services/BalanceService";
 
 class CustomerController {
   async create(request: Request, response: Response) {
     const { cpf, name } = request.body;
+    const schema = yup.object().shape({
+      cpf: yup.string().required(),
+      name: yup.string().required()
+    });
+
+    try {
+      await schema.validate(request.body, { abortEarly: false });
+    } catch (err) {
+      throw new AppError(err);
+    }
+
     const customerRepository = getCustomRepository(CustomerRepository);
 
     const customer = customerRepository.create({
@@ -36,6 +50,16 @@ class CustomerController {
   async update(request: Request, response: Response) {
     const { name } = request.body;
     const { customer } = request;
+    const schema = yup.object().shape({
+      name: yup.string().required()
+    });
+
+    try {
+      await schema.validate(request.body, { abortEarly: false });
+    } catch (err) {
+      throw new AppError(err);
+    }
+
     const customerRepository = getCustomRepository(CustomerRepository);
 
     customer.name = name;

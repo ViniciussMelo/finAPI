@@ -16,7 +16,7 @@ describe("Customer", () => {
     const connection = getConnection();
     await connection.dropDatabase();
     await connection.close();
-  })
+  });
 
   it("Should be able to create a new customer", async () => {
     const response = await request(app).post("/account")
