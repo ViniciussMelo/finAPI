@@ -28,6 +28,9 @@
 ```bash
     # Run tests
     $ yarn test
+
+    # Run tests with Coverage Table
+    $ yarn test-coverage
 ```
 
 ### Requirements
