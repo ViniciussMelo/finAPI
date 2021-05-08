@@ -28,6 +28,17 @@ class StatmentController {
 
     return response.json(statments);
   }
+
+  async findByDate(request: Request, response: Response) {
+    const { customer } = request;
+    const { date } = request.query;
+    const statmentRepository = getCustomRepository(StatmentRepository);
+    const dateFormat = new Date(date + " 00:00");
+
+    const statments = await statmentRepository.findByDate(customer.id, dateFormat);
+
+    return response.json(statments);
+  }
 }
 
 export { StatmentController }
