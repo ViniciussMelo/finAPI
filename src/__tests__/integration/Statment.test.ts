@@ -6,7 +6,7 @@ import { format } from 'date-fns'
 import createConnection from "../../database";
 
 describe("Customer", () => {
-  const cpf = "12345678912";
+  const cpf = "1111111111";
 
   beforeAll(async () => {
     const connection = await createConnection();

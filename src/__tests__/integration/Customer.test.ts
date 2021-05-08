@@ -29,6 +29,16 @@ describe("Customer", () => {
     expect(response.body).toHaveProperty("id");
   });
 
+  it("Should be not able to to register an account with an existing CPF", async () => {
+    const response = await request(app).post("/account")
+      .send({
+        name: "Random name",
+        cpf
+      });
+
+    expect(response.status).toBe(400);
+  });
+
   it("Should be able to get all customers", async () => {
     const response = await request(app).get("/account");
 

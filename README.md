@@ -1,4 +1,4 @@
-## FinApi - Financeira
+## FinApi - For finances
 > - Api developed during the classes of the Ignite NodeJS course.
 
 > - The intention of the project is to demonstrate knowledge about Node JS || Javascript ||Typescript , creating an API to control finances.

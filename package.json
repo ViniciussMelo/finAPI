@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "ts-node-dev --transpile-only --ignore-watch node_modules src/server.ts",
     "typeorm": "ts-node-dev node_modules/typeorm/cli.js",
-    "test": "cross-env NODE_ENV=test jest -i"
+    "test": "cross-env NODE_ENV=test jest -i",
+    "test-coverage": "cross-env NODE_ENV=test jest --collect-coverage -i"
   },
   "dependencies": {
     "cross-env": "^7.0.3",
